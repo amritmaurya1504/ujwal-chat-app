@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+2:wght@600;700;800;family=Poppins:400,500,600,700&display=swap");
+
+$white: #f5f5f5;
+$dark: #2c3e50;
+$lighter: #32465a;
+$lightest: #496886;
+$light: #435f7a;
+$red: #e74c3c;
+$green: #2ecc71;
+$yellow: #f1c40f;
+$gray: #95a5a6;
+$break: 735px;
+$break-big: 900px;
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+.chatpage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: wheat;
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  letter-spacing: 0.1px;
+  color: $lighter;
+  text-rendering: optimizeLegibility;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background: linear-gradient(
+    45deg,
+    #02e1ba 0%,
+    #26c9f2 29%,
+    #d911f2 66%,
+    #ffa079 100%
+  );
+}
+
+#frame {
+  width: 95%;
+  min-width: 300px;
+  max-width: 1100px;
+  height: 92vh;
+  min-height: 300px;
+  max-height: 720px;
+  background: #dadbdb;
+  border-radius: 10px;
+  @media screen and (max-width: 450px) {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+  }
+
+  #sidepanel {
+    float: left;
+    min-width: 150px;
+    max-width: 250px;
+    width: 100%;
+    height: 100%;
+    background: $dark;
+    color: $white;
+    overflow: hidden;
+    position: relative;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    @media screen and (max-width: $break) {
+      width: 58px;
+      min-width: 58px;
+    }
+    @media screen and (max-width: 450px) {
+      border-radius: 0;
+    }
+
+    #profile {
+      width: 100%;
+      padding: 10px 15px;
+      background-color: #243140;
+      @media screen and (max-width: $break) {
+        width: 100%;
+        margin: 0 auto;
+        padding: 8px 0 0 5px;
+        padding-top: 12px;
+      }
+
+      .wrap {
+        height: 60px;
+        line-height: 50px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include transition(0.3s height ease);
+        @media screen and (max-width: $break) {
+          height: 55px;
+        }
+
+        p {
+          float: left;
+          font-size: 1.3rem;
+          margin: 0;
+          background: linear-gradient(
+            to right,
+            rgb(255, 117, 156) 0%,
+            rgb(220, 188, 255) 100%
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          padding-top: 10px;
+          font-weight: 500;
+          font-family: "Baloo 2", cursive;
+          text-transform: lowercase;
+          font-weight: bold;
+          @media screen and (max-width: $break) {
+            display: none;
+          }
+        }
+        i {
+          margin-left: 6px;
+          font-size: 1.3rem;
+          color: rgb(255, 117, 156);
+          cursor: pointer;
+          @include transition(0.3s border ease);
+          @media screen and (max-width: $break) {
+            margin: 0;
+            padding-right: 0.3rem;
+            padding-bottom: 0.6rem;
+          }
+        }
+      }
+    }
+
+    #contacts {
+      height: calc(100% - 80px);
+      overflow-x: hidden;
+      @media screen and (max-width: $break) {
+        height: calc(100% - 100px);
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      &.expanded {
+        height: calc(100% - 80px);
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        background: $dark;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #243140;
+      }
+
+      ul {
+        li.contact {
+          position: relative;
+          padding: 10px 0 0.5px 0;
+          padding-top: 14px;
+          font-size: 0.9em;
+          list-style: none;
+          margin-left: -2.1rem;
+          cursor: pointer;
+          @media screen and (max-width: $break) {
+            padding: 6px 0 46px 12px;
+          }
+
+          &:hover {
+            background: $lighter;
+          }
+
+          &.active {
+            background: $lighter;
+            border-right: 5px solid $light;
+
+            span.contact-status {
+              border: 2px solid $lighter !important;
+            }
+          }
+
+          .wrap {
+            width: 88%;
+            margin: 0 auto;
+            position: relative;
+            @media screen and (max-width: $break) {
+              width: 100%;
+            }
+
+            span {
+              position: absolute;
+              left: 0;
+              margin: -2px 0 0 -2px;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              border: 2px solid $dark;
+              background: $gray;
+            }
+
+            img {
+              width: 40px;
+              border-radius: 50%;
+              float: left;
+              margin-right: 10px;
+              @media screen and (max-width: $break) {
+                margin-right: 0px;
+              }
+            }
+
+            .meta {
+              padding: 5px 0 0 0;
+              @media screen and (max-width: $break) {
+                display: none;
+              }
+
+              .name {
+                font-weight: 600;
+              }
+
+              .preview {
+                margin: 5px 0 0 0;
+                padding: 0 0 1px;
+                font-weight: 400;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include transition(1s all ease);
+
+                span {
+                  position: initial;
+                  border-radius: initial;
+                  background: none;
+                  border: none;
+                  padding: 0 2px 0 0;
+                  margin: 0 0 0 1px;
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    float: right;
+    min-width: calc(100% - 250px);
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 12px;
+    background-color: #d8dbe2;
+
+    @media screen and (max-width: $break) {
+      width: calc(100% - 58px);
+      min-width: 100px !important;
+    }
+    @media screen and (min-width: $break-big) {
+      width: calc(100% - 340px);
+    }
+    @media screen and (max-width: 450px) {
+      border-radius: 0;
+    }
+
+    .contact-profile {
+      width: 100%;
+      height: 60px;
+      line-height: 10px;
+      background-color: #fcfffe;
+      border-top-right-radius: 10px;
+      border-bottom: 3px solid #d7d7d7;
+      img {
+        width: 40px;
+        border-radius: 50%;
+        float: left;
+        margin: 9px 12px 0 9px;
+      }
+
+      p {
+        float: left;
+        padding-top: 25px;
+        font-weight: 600;
+      }
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        padding-top: 18px;
+        padding-right: 25px;
+        cursor: pointer;
+        font-size: 25px;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        border-radius: 0;
+      }
+    }
+
+    .messages {
+      padding-top: 14px;
+      height: auto;
+      min-height: calc(100% - 110px);
+      max-height: calc(100% - 200px);
+      overflow-x: hidden;
+      font-weight: 500;
+      @media screen and (max-width: $break) {
+        max-height: calc(100% - 105px);
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        background: rgba(0, 0, 0, 0);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      ul {
+        li {
+          display: inline-block;
+          clear: both;
+          float: left;
+          list-style: none;
+          margin: 5px 15px 5px -20px;
+          width: 100%;
+          font-size: 0.9em;
+
+          &:nth-last-child(1) {
+            margin-bottom: 20px;
+          }
+
+          &.sent {
+            img {
+              margin: 6px 8px 0 0;
+              float: left;
+            }
+
+            p {
+              float: left;
+              background-color: #ffffff;
+            }
+          }
+
+          &.replies {
+            img {
+              float: right;
+              margin: 6px 0 0 8px;
+            }
+
+            p {
+              background-color: #fcfffe;
+              background: $light;
+              color: $white;
+              float: right;
+            }
+          }
+
+          img {
+            width: 22px;
+            border-radius: 50%;
+            float: left;
+          }
+
+          p {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 205px;
+            line-height: 130%;
+            @media screen and (min-width: $break) {
+              max-width: 300px;
+            }
+          }
+        }
+      }
+    }
+
+    .message-input {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 8px;
+      z-index: 99;
+      background-color: #fcfffe;
+      border-top: 3px solid #d8d8d8;
+      .wrap {
+        position: relative;
+        margin: 0 10px;
+        margin-top: 8px;
+        display: flex;
+        .attachment {
+          font-size: 28px;
+          padding-top: 7px;
+          padding-right: 8px;
+          cursor: pointer;
+        }
+
+        input {
+          border: none;
+          width: 100%;
+          height: 45px;
+          padding: 10px 2px 10px 8px;
+          font-size: 0.8em;
+          border-radius: 20px;
+          color: $lighter;
+          background: $lighter;
+          color: white;
+          @media screen and (max-width: $break) {
+            padding: 15px 32px 16px 8px;
+            height: 40px;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        button {
+          border: none;
+          width: 52px;
+          cursor: pointer;
+          background: transparent;
+          border-radius: 50%;
+          color: #2c3e50;
+          font-size: 1.2rem;
+
+          &:hover {
+            color: $light;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
